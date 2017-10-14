@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ktv里评分系统的算法 | 桐悠的读书笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ktv的评分系统是如何判断一个人唱歌是否标准以及评分系统是否能准确的判定出一个人唱的有没有走调 评分系统判定过程一般是下面这样的：首先计算机通过屏幕输出一些有效提示，比如说声调高低，歌词之类，接着演唱者通过输入设备：麦克风，向计算机中输入声音信号，接着计算机通过一些列的评价算法评价演唱者的分数。 我们主要对评价算法进行分析。首先是这个演唱评价算法的核心是特征信息提取和演唱评价。特征提取是从演唱者的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ktv里评分系统的算法">
+<meta property="og:url" content="http://yoursite.com/2017/10/14/ktv里评分系统的算法/index.html">
+<meta property="og:site_name" content="桐悠的读书笔记">
+<meta property="og:description" content="ktv的评分系统是如何判断一个人唱歌是否标准以及评分系统是否能准确的判定出一个人唱的有没有走调 评分系统判定过程一般是下面这样的：首先计算机通过屏幕输出一些有效提示，比如说声调高低，歌词之类，接着演唱者通过输入设备：麦克风，向计算机中输入声音信号，接着计算机通过一些列的评价算法评价演唱者的分数。 我们主要对评价算法进行分析。首先是这个演唱评价算法的核心是特征信息提取和演唱评价。特征提取是从演唱者的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-14T15:43:08.958Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ktv里评分系统的算法">
+<meta name="twitter:description" content="ktv的评分系统是如何判断一个人唱歌是否标准以及评分系统是否能准确的判定出一个人唱的有没有走调 评分系统判定过程一般是下面这样的：首先计算机通过屏幕输出一些有效提示，比如说声调高低，歌词之类，接着演唱者通过输入设备：麦克风，向计算机中输入声音信号，接着计算机通过一些列的评价算法评价演唱者的分数。 我们主要对评价算法进行分析。首先是这个演唱评价算法的核心是特征信息提取和演唱评价。特征提取是从演唱者的">
+  
+    <link rel="alternate" href="/atom.xml" title="桐悠的读书笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">桐悠的读书笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">无限期咕咕咕~~~</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ktv里评分系统的算法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/14/ktv里评分系统的算法/" class="article-date">
+  <time datetime="2017-10-14T12:20:15.000Z" itemprop="datePublished">2017-10-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ktv里评分系统的算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ktv的评分系统是如何判断一个人唱歌是否标准以及评分系统是否能准确的判定出一个人唱的有没有走调</p>
+<p>评分系统判定过程一般是下面这样的：首先计算机通过屏幕输出一些有效提示，比如说声调高低，歌词之类，接着演唱者通过输入设备：麦克风，向计算机中输入声音信号，接着计算机通过一些列的评价算法评价演唱者的分数。</p>
+<p>我们主要对评价算法进行分析。首先是这个演唱评价算法的核心是特征信息提取和演唱评价。特征提取是从演唱者的语音信号中提取能够反应演唱水平的特征参数，这就涉及到语音信号的采集和识别问题，因为语音信号采集的完整度以及识别的准确度都会在很大程度上影响最终的结果，这方面的话可以参考科大讯飞的语音识别技术，具体之后会关于语音识别技术的算法进行介绍。接着我们讨论下一个算法的主要部分，就是演唱评价，这个部分实际上是一个数学建模的问题，因为本质上计算机进行评价的过程就是一个数学评估的过程。</p>
+<p>接下来我们对评分系统的特征提取进行详细的介绍。需要明确的一点是，特征提取是整个评价系统中最重要的一部分。一方面，只有提取到的声音信息是有效的，合理的，能反应演唱者特征以及满足旋律规则的演唱特征，之后的评价才能对用户的真实水平进行有效的比较和判定，另一方面呢，只有对演唱者的特征进行有效的选取，才能在评分中准确的评价和量化。特征信息提取主要提取的信息是音调信息和节奏信息，换句话说就是采集演唱者的音高和音长，而音高由基音来决定，因此，准确的从演唱者的演唱过程中提取出基音可以有效的提高整个评分系统的性能。</p>
+<p>接着稍微介绍下基音提取方法，这部分涉及较多的非本科知识，因此就只进行简单的介绍。基音提取技术主要有三种：时域处理法，频域处理法，以及时频域混合处理法。然后时域处理法主要是通过对波形进行分析来估计波形的周期和峰值，主要方法有：短时自相关法（ACF）、短时平均幅度差函数法（AMDF）以及并行处理法（PPROC），而频域处理法则是将语音信号映射到频域空间在进行分析直接获得基音频率，主要方法有：倒谱法、谐波峰值法、循环直方图法.而时频域混合则是综合了时域和频域的优点，主要方法是小波变换法。之后会在另一篇博客中对上述的多种算法进行介绍，可能咕咕咕，嗯？接下来我们继续讨论这个评分系统的算法。</p>
+<p>然后关于演唱评分系统的特征提取算法，目前正在使用的已经较为成熟的特征提取算法已经成功的运用在哼唱检索系统中，而对比哼唱系统，实时演唱评分系统更加注重的是实时性，哼唱系统可以在声音完全录入完毕之后在对声音进行特征提取，但是演唱评分系统需要同步演唱者的输入信号进行实时处理并进行有效的反馈，因此对比哼唱系统，实时演唱系统要求使用的特征算法拥有更低的算法复杂度以及能进行实时处理的要求。</p>
+<p>特征信息提取算法的流程：</p>
+<p>声音信号–&gt;声音录入–&gt;预处理–&gt;基音检测–&gt;特征获取–&gt;特征信息</p>
+<p>我们对基音检测这个过程进行详细的介绍，之前的部分主要是对声音进行采集以及对声音进行相关的处理，这里我们介绍的方法是基于之前简单介绍的谐波峰值法，相对于常规的谐波峰值法，这里改进的目的主要有两个地方：首先是降低基音检测算法本身的复杂度，满足实时处理的需求，同时还需要保证基音检测的精度，因为如果因为降低了复杂度而丧失了精度的话其实是得不偿失的；其次是尽可能消除谐波对于基波选取时的干扰，能够更加准确的定位基音位置</p>
+<p>简单介绍一下谐波峰值法，这是一种基于短时傅里叶变换的频域基音提取方法，通过STFT可以获得每一帧的语音信号的离散频谱，频谱峰值就是此帧信号所对应的基音。</p>
+<p>上面说到了STFT把时域信号映射到频域进行基音的提取，通过STFT获得每一帧离散信号的离散频谱，理论上频谱的峰值点就是基音频率的所在点。</p>
+<p>接着呢对上述得到的基音进行清浊音和谐波干扰，保证整个获取出来的基音序列是较为准确的基音频率，这也是当前需要进行更好的优化的部分，而除了基音部分之外，我们还需要从演唱者的声音中获取到静音帧以及半音等，在这之后，计算机就获得了一个半音序列，而这个半音序列就是之后音符划分和演唱评价的基础</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/10/14/ktv里评分系统的算法/" data-id="cj8rhroee00000jjhfylsbj69" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/13/多人fps游戏的client端和server端如何实现互动/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">多人fps游戏的client端和server端如何实现互动</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10/14/ktv里评分系统的算法/">ktv里评分系统的算法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/13/多人fps游戏的client端和server端如何实现互动/">多人fps游戏的client端和server端如何实现互动</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/07/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Crimson<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
