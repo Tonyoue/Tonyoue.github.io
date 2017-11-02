@@ -66,6 +66,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-数据库索引树的原理-B树" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/02/数据库索引树的原理-B树/" class="article-date">
+  <time datetime="2017-11-02T17:20:03.000Z" itemprop="datePublished">2017-11-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/02/数据库索引树的原理-B树/">数据库索引树的原理_B树</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在数据库索引的存储中，存储的方式一般是采用树形结构存储的方式，为的就是在查询的时候可以保持较高的效率，同时也可以让数据保持有序，但是有一个问题，就是索引并没有采用二叉查找树而是采用的B树的方式，这又是为什么呢？我们都知道二叉查找树的时间复杂度是O（logN）已经达到了足够高的性能了，但是我们仍不采用这种方式进行索引，最大的原因是我们在设计的时候，除了考虑到时间复杂度这一关键因素之外，我们还需要考虑到另外一个关键因素，就是空间复杂度，简单来说，当我们查找的数据大小是几十g的情况下，将所有的数据加载到内存中是不现实的事情的，因为这样首先内存不足，其次磁盘IO的开销也会非常大，我们所能做的就只是逐一加载磁盘页，磁盘页对应的索引树的节点，在最坏的情况下，需要进行的次数就是索引树的高度，而我们为了减少磁盘IO开销，就需要吧原本瘦瘦高高的树变成矮胖的结构，以此来减少磁盘IO次数。</p>
+<p>未完待续</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/11/02/数据库索引树的原理-B树/" data-id="cj9iqnopm0001szjh805cq3eu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-为什么需要通过做项目来提高代码的水平" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/10/17/为什么需要通过做项目来提高代码的水平/" class="article-date">
@@ -93,7 +131,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/17/为什么需要通过做项目来提高代码的水平/" data-id="cj8vrsw8x00002rjhjbxn897i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/17/为什么需要通过做项目来提高代码的水平/" data-id="cj9iqnoq60002szjhsjdk6zyc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -146,7 +184,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/14/ktv里评分系统的算法/" data-id="cj8vrsw9l00022rjhwhrz3hvp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/14/ktv里评分系统的算法/" data-id="cj9iqnoqa0003szjhkfnm8v2g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -190,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/13/多人fps游戏的client端和server端如何实现互动/" data-id="cj8vrsw9m00032rjhhuzquxqc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/13/多人fps游戏的client端和server端如何实现互动/" data-id="cj9iqnoqc0004szjhzpkemv8h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -235,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/10/07/hello-world/" data-id="cj8vrsw9h00012rjhm8mf7r99" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/10/07/hello-world/" data-id="cj9iqnopf0000szjho9oxc579" class="article-share-link">Share</a>
       
       
     </footer>
@@ -262,7 +300,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li></ul>
     </div>
   </div>
 
@@ -273,6 +311,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/11/02/数据库索引树的原理-B树/">数据库索引树的原理_B树</a>
+          </li>
         
           <li>
             <a href="/2017/10/17/为什么需要通过做项目来提高代码的水平/">为什么需要通过做项目来提高代码的水平</a>
